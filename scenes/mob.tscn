@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://dahl7mni0hcwx"]
+
+[ext_resource type="Script" path="res://Mob.gd" id="1_8t5do"]
+[ext_resource type="Texture2D" uid="uid://bi3bw7f5821ks" path="res://Asset/art/enemyFlyingAlt_1.png" id="2_fbn4e"]
+[ext_resource type="Texture2D" uid="uid://b5kcrayujqgbh" path="res://Asset/art/enemyFlyingAlt_2.png" id="3_ahsqg"]
+[ext_resource type="Texture2D" uid="uid://c688o0aimifvt" path="res://Asset/art/enemyWalking_1.png" id="4_078c6"]
+[ext_resource type="Texture2D" uid="uid://cc7c4upkooajm" path="res://Asset/art/enemyWalking_2.png" id="5_rugy4"]
+[ext_resource type="Texture2D" uid="uid://c4b14es54v3fx" path="res://Asset/art/enemySwimming_1.png" id="6_vygt5"]
+[ext_resource type="Texture2D" uid="uid://dpgb81j36xogl" path="res://Asset/art/enemySwimming_2.png" id="7_mexy2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ey5r8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fbn4e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ahsqg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fbn4e")
+}],
+"loop": true,
+"name": &"ghost",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_078c6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rugy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_078c6")
+}],
+"loop": true,
+"name": &"skeletton",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_vygt5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_mexy2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vygt5")
+}],
+"loop": true,
+"name": &"slime",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rleag"]
+radius = 5.0
+height = 15.3333
+
+[node name="Mob" type="RigidBody2D"]
+scale = Vector2(3, 3)
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_8t5do")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ey5r8")
+animation = &"skeletton"
+frame = 1
+frame_progress = 0.708986
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
+shape = SubResource("CapsuleShape2D_rleag")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
