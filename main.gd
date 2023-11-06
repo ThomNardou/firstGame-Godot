@@ -26,6 +26,8 @@ func restart():
 	$startTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("GET READY !")
+	await get_tree().create_timer(1).timeout
+	$HUD.show_message("GO !")
 
 
 func _on_start_timer_timeout():

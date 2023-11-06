@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxyh7hngk84wr"]
+[gd_scene load_steps=7 format=3 uid="uid://cxyh7hngk84wr"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_60dnq"]
 [ext_resource type="PackedScene" uid="uid://cml7tlx5x5vx1" path="res://scenes/player.tscn" id="1_acrec"]
 [ext_resource type="PackedScene" uid="uid://dahl7mni0hcwx" path="res://scenes/mob.tscn" id="2_g6ily"]
 [ext_resource type="PackedScene" uid="uid://dq0vofhen1ur6" path="res://scenes/hud.tscn" id="4_hb1bm"]
+[ext_resource type="Texture2D" uid="uid://bmoberqfy0u7s" path="res://Asset/background/beautifull-cherry-blossom-background-free-vector.jpg" id="5_f3mrd"]
 
 [sub_resource type="Curve2D" id="Curve2D_ora1c"]
 _data = {
@@ -14,6 +15,22 @@ point_count = 5
 [node name="main" type="Node"]
 script = ExtResource("1_60dnq")
 mob_secene = ExtResource("2_g6ily")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 238.0
+offset_top = -396.0
+offset_right = 1769.0
+offset_bottom = 584.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_f3mrd")
 
 [node name="Player" parent="." instance=ExtResource("1_acrec")]
 
@@ -40,5 +57,5 @@ curve = SubResource("Curve2D_ora1c")
 [connection signal="timeout" from="mobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="scoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="startTimer" to="." method="_on_start_timer_timeout"]
-[connection signal="startGame" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="startGame" from="HUD" to="." method="restart"]
+[connection signal="startGame" from="HUD" to="." method="_on_hud_start_game"]
