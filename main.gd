@@ -1,6 +1,9 @@
 extends Node
 
 @export var mob_secene: PackedScene
+var mob_speed = 1
+
+var temp_delta
 
 var score
 
@@ -12,7 +15,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	temp_delta = delta
 
 
 func game_over():
@@ -22,6 +25,7 @@ func game_over():
 
 func restart():
 	score = 0
+	mob_speed = 1
 	$Player.start($StartPosition.position)
 	$startTimer.start()
 	$HUD.update_score(score)
@@ -50,7 +54,14 @@ func _on_mob_timer_timeout():
 	mob.position = mab_spawn_location.position;
 	
 	var velocity = Vector2(randf_range(150.0, 250), 0.0)
-	mob.linear_velocity = velocity.rotated(direction)
+	
+	#if int(temp_delta) % 0.1 == 0:
+		
+	print(int(temp_delta) % 1)
+	
+	#print(mob_speed)
+	
+	mob.linear_velocity = velocity.rotated(direction) * mob_speed
 	
 	add_child(mob)
 
