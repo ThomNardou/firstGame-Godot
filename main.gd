@@ -1,21 +1,14 @@
 extends Node
 
 @export var mob_secene: PackedScene
+
 var mob_speed = 1
-
-var temp_delta
-
+var temp_delta = 0
 var score
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	# restart()
-	pass
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	temp_delta = delta
+	temp_delta += 1
 
 
 func game_over():
@@ -55,11 +48,10 @@ func _on_mob_timer_timeout():
 	
 	var velocity = Vector2(randf_range(150.0, 250), 0.0)
 	
-	#if int(temp_delta) % 0.1 == 0:
-		
-	print(int(temp_delta) % 1)
+	#if temp_delta % 10 == 0:
+		#mob_speed+=1
 	
-	#print(mob_speed)
+	print(temp_delta)
 	
 	mob.linear_velocity = velocity.rotated(direction) * mob_speed
 	

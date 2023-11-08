@@ -57,5 +57,5 @@ curve = SubResource("Curve2D_ora1c")
 [connection signal="timeout" from="mobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="scoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="startTimer" to="." method="_on_start_timer_timeout"]
-[connection signal="startGame" from="HUD" to="." method="_on_hud_start_game"]
 [connection signal="startGame" from="HUD" to="." method="restart"]
+[connection signal="startGame" from="HUD" to="." method="_on_hud_start_game"]
